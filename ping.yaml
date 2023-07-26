@@ -1,0 +1,9 @@
+--- # basically means beginning of yaml file
+  - name: Ping Servers # name of the play
+    hosts: localhost # target host
+    tasks: #tasks definition
+      - name: Ping # name of first task
+        ping: #module to run / task to do 
+
+        # to run this file ansible-playbook ping.yaml
+        #1st yaml file

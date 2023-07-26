@@ -1,0 +1,24 @@
+---
+  - name: install and manage apache 
+    hosts: localhost
+    tasks: 
+      - name: install apache
+        dnf:
+          name: httpd
+          state: latest #absent remove apache
+
+      - name: start and enable apache
+        systemd:
+          name: httpd
+          state: started #stopped to stop 
+          enabled: yes #no to disable
+
+      - name: create custom index.html 
+        file:
+          path: /var/www/html/index.html
+          state: touch #absent to remove it 
+          owner: apache
+          group: apache
+          mode: 0644
+
+          ## Starting and enabling Htppd
