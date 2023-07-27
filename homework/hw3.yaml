@@ -1,0 +1,12 @@
+---
+  - name: change config of SElinux
+    hosts: localhost
+    become: yes
+    tasks:
+
+      - name: change to disable
+        lineinfile:
+          path: /etc/selinux/config
+          line: "SELINUX=disabled"
+          state: present
+#this is my homework for session3, i did all the directions and completed it.
