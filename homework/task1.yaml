@@ -1,0 +1,36 @@
+---
+  - name: install and manage apache
+    hosts: localhost
+    tasks:
+      - name: install apache
+        dnf:
+          name: httpd
+          state: latest
+
+      - name: start and enable apache 
+        systemd: 
+          name: httpd
+          state: started
+          enabled: yes
+
+      - name: create custome index.html
+        file:
+          path: /var/www/html/index.html
+          state: touch
+          owner: apache
+          group: apache
+          mode: 0644
+
+      - name: write data into index.html
+        copy: 
+          content: | 
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Welcome to my website</title>
+            </head>
+            <body>
+                <h1>Hello, this is my custom index.html!</h1>
+            </body>
+            </html>
+          dest: /var/www/html/index.html
